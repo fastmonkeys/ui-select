@@ -1,7 +1,7 @@
 /*!
  * ui-select
  * http://github.com/angular-ui/ui-select
- * Version: 0.14.8 - 2016-02-18T22:01:43.792Z
+ * Version: 0.14.9 - 2016-03-01T14:43:52.825Z
  * License: MIT
  */
 
@@ -236,6 +236,10 @@ uis.directive('uiSelectChoices',
         }
 
         $compile(element, transcludeFn)(scope); //Passing current transcludeFn to be able to append elements correctly from uisTranscludeAppend
+
+        scope.$on('$destroy', function() {
+          choices.remove();
+        });
 
         scope.$watch('$select.search', function(newValue) {
           if(newValue && !$select.open && $select.multiple) $select.activate(false, true);
